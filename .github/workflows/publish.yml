@@ -79,7 +79,7 @@ jobs:
                   git push origin "$VERSION"
 
             - name: Package Extension
-                  vsce package --out "cline-${{ steps.get_version.outputs.version }}.vsix"
+                  run: vsce package --out "cline-${{ steps.get_version.outputs.version }}.vsix"
 
             # - name: Get Changelog Entry
             #   id: changelog
