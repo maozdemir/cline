@@ -78,21 +78,8 @@ jobs:
                   git tag "$VERSION"
                   git push origin "$VERSION"
 
-            - name: Package and Publish Extension
-              env:
-                  VSCE_PAT: ${{ secrets.VSCE_PAT }}
-                  OVSX_PAT: ${{ secrets.OVSX_PAT }}
-              run: |
-                  # Required to generate the .vsix
+            - name: Package Extension
                   vsce package --out "cline-${{ steps.get_version.outputs.version }}.vsix"
-
-                  if [ "${{ github.event.inputs.release-type }}" = "pre-release" ]; then
-                    npm run publish:marketplace:prerelease
-                    echo "Successfully published pre-release version ${{ steps.get_version.outputs.version }} to VS Code Marketplace and Open VSX Registry"
-                  else
-                    npm run publish:marketplace
-                    echo "Successfully published release version ${{ steps.get_version.outputs.version }} to VS Code Marketplace and Open VSX Registry"
-                  fi
 
             # - name: Get Changelog Entry
             #   id: changelog
