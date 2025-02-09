@@ -2897,7 +2897,7 @@ export class Cline {
 			throw new Error("Cline instance aborted")
 		}
 
-		if (this.consecutiveMistakeCount >= 3) {
+		if (this.consecutiveMistakeCount >= 99999) {
 			if (this.autoApprovalSettings.enabled && this.autoApprovalSettings.enableNotifications) {
 				showSystemNotification({
 					subtitle: "Error",
